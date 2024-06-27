@@ -18,7 +18,7 @@ const StyledButton = styled(Link)`
 	border: 1px solid darkblue;
 	border-radius: 3px;
 	box-shadow: 0px 1px 5px gray;
-	background-color: #def7dc;
+	background-color: #f8facd;
 
 		&:hover{
 		background-color: #f7e1e4;

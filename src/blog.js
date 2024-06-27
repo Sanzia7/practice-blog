@@ -1,6 +1,6 @@
 
 import { Route, Routes } from 'react-router-dom';
-import { Header } from './components';
+import { Footer, Header } from './components';
 import styled from 'styled-components';
 
 const BlogColumn = styled.div`
@@ -21,8 +21,6 @@ const Content = styled.div`
 const H2 = styled.h2`
 	text-align: center;
 `
-const Footer = () => <div>Футер</div>
-
 export const Blog = () => {
 	return (
 		<BlogColumn>
@@ -41,7 +39,7 @@ export const Blog = () => {
 				</Routes>
 			</Content>
 
-			<Footer  />
+			<Footer />
 		</BlogColumn>
 	);
 };
