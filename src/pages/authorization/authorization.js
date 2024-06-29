@@ -5,7 +5,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { server } from '../../bff'
-import {AuthFormError, Button, H2, Input } from '../../components'
+import { AuthFormError, Button, H2, Input } from '../../components'
 import { useResetForm } from '../../hooks'
 import { selectUserRole } from '../../selectors'
 import { setUser } from '../../actions'
@@ -26,6 +26,18 @@ const authFormSchema = yup.object().shape({
 		.min(7, 'Неверный Пароль. Минимум 7 символов')
 		.max(25, 'Неверный Пароль. Максимум 25 символов'),
 })
+
+const StyledLink = styled(Link)`
+		text-align: center;
+		text-decoration: underline;
+		margin: 20px 0;
+		font-size: 18px;
+
+			&:hover{
+			color: darkmagenta;
+			cursor: pointer;
+			text-decoration: none;
+	`
 
 const AuthorizationContainer = ({className}) => {
 	const {
@@ -58,24 +70,12 @@ const AuthorizationContainer = ({className}) => {
 		})
 	}
 
-	if (roleId !== ROLE_ID.GUEST) {
-		return <Navigate  to="/"/>
-	}
-
 	const formError = errors?.login?.message || errors?.password?.message
 	const errorMessage = formError || serverError
 
-	const StyledLink = styled(Link)`
-		text-align: center;
-		text-decoration: underline;
-		margin: 20px 0;
-		font-size: 18px;
-
-			&:hover{
-			color: darkmagenta;
-			cursor: pointer;
-			text-decoration: none;
-	`
+	if (roleId !== ROLE_ID.GUEST) {
+		return <Navigate  to="/"/>
+	}
 
 	return (
 		<div className={className}>

@@ -5,16 +5,16 @@ import { useStore } from 'react-redux'
 export const useResetForm = (reset) => {
 	const store = useStore()
 
-		useEffect(() => {
+	useEffect(() => {
 		let currentIsLogout = store.getState().app.isLogout
 
-		const unsubscribe = store.subscribe(() => {
+		return store.subscribe(() => {
 			let previousIsLogout = currentIsLogout
 			currentIsLogout = store.getState().app.isLogout
+
 			if (currentIsLogout !== previousIsLogout) {
 				reset()
 			}
-		})
-		return unsubscribe
-	}, [reset, store])
-}
+		});
+	}, [reset, store]);
+};

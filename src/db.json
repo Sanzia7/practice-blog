@@ -27,6 +27,13 @@
       "password": "1234567M",
       "registered_at": "2036-04-25 18:29",
       "role_id": 2
+    },
+    {
+      "id": "a1fa",
+      "login": "Alex",
+      "password": "1234567A",
+      "registered_at": "2039-08-31 03:58",
+      "role_id": 2
     }
   ],
   "roles": [

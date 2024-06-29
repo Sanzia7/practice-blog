@@ -62,12 +62,12 @@ const RegistrationContainer = ({className}) => {
 		})
 	}
 
+	const formError = errors?.login?.message || errors?.password?.message || errors?.passcheck?.message
+	const errorMessage = formError || serverError
+
 	if (roleId !== ROLE_ID.GUEST) {
 		return <Navigate  to="/"/>
 	}
-
-	const formError = errors?.login?.message || errors?.password?.message || errors?.passcheck?.message
-	const errorMessage = formError || serverError
 
 	return (
 		<div className={className}>
