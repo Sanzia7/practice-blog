@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import { server } from '../../bff'
 import { setUser } from '../../actions'
 import { Button, H2, Input } from '../../components'
+import { selectUserRole } from '../../selectors'
 import styled from 'styled-components'
+import { ROLE_ID } from '../../constants'
 
 const authFormSchema = yup.object().shape({
 	login: yup
@@ -40,6 +42,21 @@ const AuthorizationContainer = ({className}) => {
 
 	const [serverError, setServerError] = useState(null)
 	const dispatch = useDispatch()
+	const store = useStore()
+	const roleId = useSelector(selectUserRole)
+
+	useEffect(() => {
+		let currentIsLogout = store.getState().app.isLogout
+
+		const unsubscribe = store.subscribe(() => {
+			let previousIsLogout = currentIsLogout
+			currentIsLogout = store.getState().app.isLogout
+			if (currentIsLogout !== previousIsLogout) {
+				reset()
+			}
+		})
+		return unsubscribe
+	}, [reset, store])
 
 	const onSubmit = ({ login, password }) => {
 		//это запрос на наш собственный эмулятор сервера:
@@ -78,6 +95,12 @@ const AuthorizationContainer = ({className}) => {
 			cursor: pointer;
 			text-decoration: none;
 	`
+
+	if (roleId !== ROLE_ID.GUEST) {
+		return <Navigate  to="/"/>
+	}
+
+
 	return (
 		<div className={className}>
 			<H2>Авторизация</H2>
