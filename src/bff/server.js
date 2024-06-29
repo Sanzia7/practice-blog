@@ -3,7 +3,6 @@ import { getUser } from './get-user'
 import { addUser } from './add-user'
 import { sessions } from './sessions'
 
-
 export const server = {
 	async logout(session) {
 		sessions.remove(session)
@@ -34,14 +33,15 @@ export const server = {
 		}
 	},
 	async register(regLogin, regPassword) {
-		const user = await getUser(regLogin)
-		if (user) {
+		const existedUser = await getUser(regLogin)
+		if (existedUser) {
 			return {
 				error: 'Такой логин уже занят',
 				response: null
 			}
 		}
-		await addUser(regLogin, regPassword)
+		const user = await addUser(regLogin, regPassword)
+		console.log(user)
 
 		return {
 			error:null,
