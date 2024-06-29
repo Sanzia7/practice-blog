@@ -2,8 +2,15 @@
 	"users": [
 		{
 			"id": "001",
-			"login": "anton",
-			"password": "quert123",
+			"login": "Anton",
+			"password": "qwert1234",
+			"registered_at": "2027-02-07",
+			"role_id": 0
+		},
+		{
+			"id": "002",
+			"login": "Andrea",
+			"password": "12345asa",
 			"registered_at": "2027-02-07",
 			"role_id": 0
 		}

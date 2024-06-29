@@ -1,51 +1,61 @@
 //этот прокси-эмулятор должен обеспечивать авторизацию и регистрацию пользователя и его текущую сессию
 import { getUser } from './get-user'
 import { addUser } from './add-user'
-import { createSession } from './create-session'
+import { sessions } from './sessions'
 
 
 export const server = {
+	async logout(session) {
+		sessions.remove(session)
+	},
 	async authorize(authLogin, authPassword) {
-
 		const user = await getUser(authLogin)
-
 		if (!user) {
 			return {
 				error:'Такой пользователь не найден',
-				response: null
+				response: null,
 			}
 		}
-
 		if (authPassword !== user.password) {
 			return {
 				error:'Неверный пароль',
-				response: null
+				response: null,
 			}
 		}
 
 		return {
-			error:null,
-			response: createSession(user.role_id)
-			}
+			error: null,
+			response: {
+				id: user.id,
+				login: user.login,
+				roleId: user.role_id,
+				session: sessions.create(user),
+			},
+		}
 	},
-
 	async register(regLogin, regPassword) {
-
 		const user = await getUser(regLogin)
-
 		if (user) {
 			return {
 				error: 'Такой логин уже занят',
 				response: null
 			}
 		}
-
 		await addUser(regLogin, regPassword)
-
 
 		return {
 			error:null,
-			response: createSession(user.role_id)
-			}
-	}
+			response: {
+				id: user.id,
+				login: user.login,
+				roleId: user.role_id,
+				session: sessions.create(user),
+			},
+		}
+	},
 }
+
+
+
+// const session = sessions.create()
+// sessions.add(session)

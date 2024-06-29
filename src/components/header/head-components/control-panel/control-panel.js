@@ -1,32 +1,28 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { Icon } from '../../../../components';
-import styled from 'styled-components';
+import { Link, useNavigate } from 'react-router-dom'
+import { Button, Icon } from '../../../../components'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+	selectUserLogin,
+	selectUserRole,
+selectUserSession
+} from '../../../../selectors'
+import { ROLE_ID } from '../../../../constants'
+import { logout } from '../../../../actions'
+import styled from 'styled-components'
 
 
 const RightAligned = styled.div`
 	display: flex;
 	justify-content: flex-end;
 `
-
-const StyledButton = styled(Link)`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 18px;
-	width: 100px;
-	height: 32px;
-	border: 1px solid darkblue;
-	border-radius: 3px;
-	box-shadow: 0px 1px 5px gray;
-	background-color: #f8facd;
-
-		&:hover{
-		background-color: #f7e1e4;
-		color: darkmagenta;
-	}
+const UserName = styled.div`
+		align-items: center;
+		font-size: 22px;
+		font-weight: bold;
+		margin: 5px;
+		color: #077077;
 `
-
-const StyledBackward = styled.div`
+const StyledIcon = styled.div`
 	&:hover{
 		cursor: pointer;
 		color: darkmagenta;
@@ -35,18 +31,39 @@ const StyledBackward = styled.div`
 
 const ControlPanelContainer = ({ className }) => {
 	const navigate = useNavigate()
-
+	const dispatch = useDispatch()
+	const roleId = useSelector(selectUserRole)
+	const login = useSelector(selectUserLogin)
+	const session = useSelector(selectUserSession)
 
 	return (
 		<div className={className}>
 			<RightAligned>
-				<StyledButton to="/login">Войти</StyledButton>
+				{roleId === ROLE_ID.GUEST
+					? (
+						<Button>
+							<Link to="/login">Войти</Link>
+						</Button>
+					)
+					: (
+						<>
+							<UserName>{login}</UserName>
+							<StyledIcon >
+								<Icon
+									id="fa-sign-out"
+									margin="0 0 0 10px"
+									size = "29px"
+									onClick={() => dispatch(logout(session))}
+								/>
+							</StyledIcon>
+						</>
+					)
+				}
 			</RightAligned>
 			<RightAligned>
-				<StyledBackward onClick={() => navigate(-1)}>
+				<StyledIcon onClick={() => navigate(-1)}>
 					<Icon id="fa-backward" margin="10px 0 0 0"  />
-				</StyledBackward>
-
+				</StyledIcon>
 				<Link to="/post">
 					<Icon id="fa-file-text-o"  margin="10px 0 0 16px" />
 				</Link>
@@ -61,6 +78,9 @@ const ControlPanelContainer = ({ className }) => {
 
 export const ControlPanel = styled(ControlPanelContainer)`
 `
+
+//<i class="fa fa-sign-out" aria-hidden="true"></i>
+
 
 
 
