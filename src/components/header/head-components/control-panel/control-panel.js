@@ -6,7 +6,7 @@ import {
 	selectUserRole,
 selectUserSession
 } from '../../../../selectors'
-import { ROLE_ID } from '../../../../constants'
+import { ROLE } from '../../../../constants'
 import { logout } from '../../../../actions'
 import styled from 'styled-components'
 
@@ -22,12 +22,6 @@ const UserName = styled.div`
 		margin: 5px;
 		color: #077077;
 `
-const StyledIcon = styled.div`
-	&:hover{
-		cursor: pointer;
-		color: darkmagenta;
-	}
-`
 
 const ControlPanelContainer = ({ className }) => {
 	const navigate = useNavigate()
@@ -39,7 +33,7 @@ const ControlPanelContainer = ({ className }) => {
 	return (
 		<div className={className}>
 			<RightAligned>
-				{roleId === ROLE_ID.GUEST
+				{roleId === ROLE.GUEST
 					? (
 						<Button>
 							<Link to="/login">Войти</Link>
@@ -48,22 +42,22 @@ const ControlPanelContainer = ({ className }) => {
 					: (
 						<>
 							<UserName>{login}</UserName>
-							<StyledIcon >
 								<Icon
 									id="fa-sign-out"
 									margin="0 0 0 10px"
 									size = "29px"
 									onClick={() => dispatch(logout(session))}
 								/>
-							</StyledIcon>
 						</>
 					)
 				}
 			</RightAligned>
 			<RightAligned>
-				<StyledIcon onClick={() => navigate(-1)}>
-					<Icon id="fa-backward" margin="10px 0 0 0"  />
-				</StyledIcon>
+				<Icon
+					id="fa-backward"
+					margin="10px 0 0 0"
+					onClick={() => navigate(-1)}
+				/>
 				<Link to="/post">
 					<Icon id="fa-file-text-o"  margin="10px 0 0 16px" />
 				</Link>

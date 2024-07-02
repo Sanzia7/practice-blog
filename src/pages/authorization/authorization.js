@@ -9,7 +9,7 @@ import { AuthFormError, Button, H2, Input } from '../../components'
 import { useResetForm } from '../../hooks'
 import { selectUserRole } from '../../selectors'
 import { setUser } from '../../actions'
-import { ROLE_ID } from '../../constants'
+import { ROLE } from '../../constants'
 import styled from 'styled-components'
 
 const authFormSchema = yup.object().shape({
@@ -73,7 +73,7 @@ const AuthorizationContainer = ({className}) => {
 	const formError = errors?.login?.message || errors?.password?.message
 	const errorMessage = formError || serverError
 
-	if (roleId !== ROLE_ID.GUEST) {
+	if (roleId !== ROLE.GUEST) {
 		return <Navigate  to="/"/>
 	}
 
@@ -90,7 +90,7 @@ const AuthorizationContainer = ({className}) => {
 					})}
 				/>
 				<Input
-					type="password"
+					type="current-password"
 					placeholder="Пароль... "
 					{...register('password', {
 						onChange: () => setServerError(null),
@@ -108,8 +108,8 @@ const AuthorizationContainer = ({className}) => {
 
 export const Authorization = styled(AuthorizationContainer)`
 	display: flex;
-	align-items: center;
 	flex-direction: column;
+	align-items: center;
 
 	& > form {
 		display: flex;

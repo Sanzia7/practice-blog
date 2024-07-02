@@ -3,54 +3,40 @@
     {
       "id": "001",
       "login": "Anton",
-      "password": "qwert1234",
-      "registered_at": "2027-02-07",
-      "role_id": 0
-    },
-    {
-      "id": "002",
-      "login": "Andrea",
-      "password": "12345asa",
+      "password": "1234567A",
       "registered_at": "2027-02-07",
       "role_id": 0
     },
     {
       "id": "6053",
       "login": "Lana",
-      "password": "1234567S",
+      "password": "1234567L",
       "registered_at": "2048-10-03 04:38",
       "role_id": 2
     },
     {
-      "id": "ca89",
-      "login": "Mark",
-      "password": "1234567M",
-      "registered_at": "2036-04-25 18:29",
-      "role_id": 2
-    },
-    {
-      "id": "a1fa",
-      "login": "Alex",
-      "password": "1234567A",
-      "registered_at": "2039-08-31 03:58",
+      "id": "05a9",
+      "login": "Svetlana",
+      "password": "1234567S",
+      "registered_at": "2056-04-12 14:33",
       "role_id": 2
     }
   ],
   "roles": [
     {
-      "id": 0,
+      "id": "0",
       "name": "Админ"
     },
     {
-      "id": 1,
+      "id": "1",
       "name": "Модератор"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Читатель"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Гость"
     }
   ],

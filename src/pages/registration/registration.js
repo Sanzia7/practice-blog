@@ -9,8 +9,9 @@ import { AuthFormError, Button, H2, Input } from '../../components'
 import { useResetForm } from '../../hooks'
 import { selectUserRole } from '../../selectors'
 import { setUser } from '../../actions'
-import { ROLE_ID } from '../../constants'
+
 import styled from 'styled-components'
+import { ROLE } from '../../constants'
 
 const regFormSchema = yup.object().shape({
 	login: yup
@@ -65,7 +66,7 @@ const RegistrationContainer = ({className}) => {
 	const formError = errors?.login?.message || errors?.password?.message || errors?.passcheck?.message
 	const errorMessage = formError || serverError
 
-	if (roleId !== ROLE_ID.GUEST) {
+	if (roleId !== ROLE.GUEST) {
 		return <Navigate  to="/"/>
 	}
 
@@ -82,14 +83,14 @@ const RegistrationContainer = ({className}) => {
 					})}
 				/>
 				<Input
-					type="password"
+					type="new-password"
 					placeholder="Пароль... "
 					{...register('password', {
 						onChange: () => setServerError(null),
 					})}
 				/>
 				<Input
-					type="password"
+					type="new-password"
 					placeholder="Повторный ввод пароля... "
 					{...register('passcheck', {
 						onChange: () => setServerError(null),
