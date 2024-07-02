@@ -29,9 +29,10 @@ const UsersContainer = ({ className }) => {
 
 	const onUserRemove = (userId) => {
 		requestServer('removeUser', userId).then(() => {
-			setIsUpdateUserList(!setIsUpdateUserList)
+			setIsUpdateUserList(!isUpdateUserList)
 		})
 	}
+
 
 	return (
 		<div className={className}>
@@ -51,11 +52,12 @@ const UsersContainer = ({ className }) => {
 							registeredAt={registeredAt}
 							roleId={roleId}
 							roles={roles.filter(
-								({ id: roleId} ) => roleId != ROLE.GUEST
+								({ id: roleId} ) => +roleId !== ROLE.GUEST
 							)}
 							onUserRemove={() => onUserRemove(id)}
 						/>
 					))}
+
 				</div>
 			</Content>
 		</div>

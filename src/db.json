@@ -20,6 +20,13 @@
       "password": "1234567S",
       "registered_at": "2056-04-12 14:33",
       "role_id": 2
+    },
+    {
+      "id": "85c7",
+      "login": "Lana1",
+      "password": "123123L",
+      "registered_at": "2052-05-12 13:02",
+      "role_id": 2
     }
   ],
   "roles": [
