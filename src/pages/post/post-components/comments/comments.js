@@ -20,11 +20,11 @@ const CommentsContainer = ({ className, comments, postId }) => {
 
 	return (
 		<div className={className}>
-			<div className='new-comment'>
+			<div className="new-comment">
 				<textarea
-					name='comment'
+					name="comment"
 					value={newComment}
-					placeholder='Коментрий...'
+					placeholder="Коментрий..."
 					onChange={({ target }) => setNewComment(target.value)}
 				></textarea>
 				<Icon
@@ -35,18 +35,18 @@ const CommentsContainer = ({ className, comments, postId }) => {
 				/>
 			</div>
 
-			<div className='comments'>
-				{comments.map(({ id, author, publishedAt, content }) => (
-						<Comment
-							key={id}
-							id={id}
-							author={author}
-							publishedAt={publishedAt}
-							content={content}
-						/>
+			<div className="comments">
+				{comments.map(({ postId, id, author, content, publishedAt }) => (
+					<Comment
+						key={id}
+						postId={postId}
+						id={id}
+						author={author}
+						content={content}
+						publishedAt={publishedAt}
+					/>
 				))}
 			</div>
-
 		</div>
 	)
 }

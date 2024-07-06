@@ -1,12 +1,10 @@
-
-import { useLayoutEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setUser } from './actions';
-import { Route, Routes } from 'react-router-dom';
-import { Footer, Header } from './components';
-import { Authorization, Post, Registration, Users } from './pages';
-import styled from 'styled-components';
-
+import { useLayoutEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setUser } from './actions'
+import { Route, Routes } from 'react-router-dom'
+import { Footer, Header, Modal } from './components'
+import { Authorization, Post, Registration, Users } from './pages'
+import styled from 'styled-components'
 
 const BlogColumn = styled.div`
 	display: flex;
@@ -39,34 +37,29 @@ export const Blog = () => {
 			setUser({
 				...currentUserData,
 				roleId: Number(currentUserData.roleId),
-			})
+			}),
 		)
 	}, [dispatch])
 
 	return (
 		<BlogColumn>
 			<Header />
-
 			<Page>
 				<Routes>
-					<Route path='/' element={<div>Главная Страница</div>} />
-					<Route path='/login' element={<Authorization />} />
-					<Route path='/register' element={<Registration />} />
-					<Route path='/users' element={<Users />} />
-					<Route path='/post' element={<div>Новая Статья</div>} />
-					<Route path='/post/:id' element={<Post />} />
-					<Route path='*' element={<div>Ошибка</div>} />
+					<Route path="/" element={<div>Главная Страница</div>} />
+					<Route path="/login" element={<Authorization />} />
+					<Route path="/register" element={<Registration />} />
+					<Route path="/users" element={<Users />} />
+					<Route path="/post" element={<div>Новая Статья</div>} />
+					<Route path="/post/:id" element={<Post />} />
+					<Route path="*" element={<div>Ошибка</div>} />
 				</Routes>
 			</Page>
-
 			<Footer />
+			<Modal />
 		</BlogColumn>
-	);
-};
-
-
-
+	)
+}
 
 // min-hight: 100%;
 //npx json-server --watch src/db.json --port 3005
-
