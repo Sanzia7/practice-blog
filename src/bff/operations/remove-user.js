@@ -3,15 +3,17 @@ import { deleteUser } from '../api'
 import { sessions } from '../sessions'
 
 
-export const removeUser = async (userSession, userId) => {
+export const removeUser = async (hash, userId) => {
 	const accessRoles = [ROLE.ADMIN]
+	const access = await sessions.access(hash, accessRoles)
 
-	if (!sessions.access(userSession, accessRoles)) {
+	if (!access) {
 		return {
 			error: 'Доступ запрещён',
 			response: null,
 		}
 	}
+
 	await deleteUser(userId)
 
 	return {

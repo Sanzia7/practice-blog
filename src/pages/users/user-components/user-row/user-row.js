@@ -4,7 +4,6 @@ import { TableRow } from '../table-row/table-row'
 import { Icon } from '../../../../components'
 import styled from 'styled-components'
 
-
 const UserRowContainer = ({
 	className,
 	id,
@@ -16,10 +15,7 @@ const UserRowContainer = ({
 }) => {
 	const [initialRoleId, setInitialRoleId] = useState(userRoleId)
 	const [selectedRoleId, setSelectedRoleId] = useState(userRoleId)
-
 	const requestServer = useServerRequest()
-	console.log(roles)
-
 
 	const onRoleChange = ({target}) => {
 		setSelectedRoleId(Number(target.value))
@@ -55,7 +51,7 @@ const UserRowContainer = ({
 							margin="0 0 0 10px"
 							disabled={isSaveBtnDisabled}
 							onClick={() => onRoleSave(id, selectedRoleId)}
-					/>
+						/>
 					</div>
 				</div>
 			</TableRow>

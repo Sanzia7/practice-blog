@@ -5,11 +5,11 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { server } from '../../bff'
-import { AuthFormError, Button, H2, Input } from '../../components'
 import { useResetForm } from '../../hooks'
 import { selectUserRole } from '../../selectors'
 import { setUser } from '../../actions'
 import { ROLE } from '../../constants'
+import { AuthFormError, Button, H2, Input } from '../../components'
 import styled from 'styled-components'
 
 const authFormSchema = yup.object().shape({
@@ -67,6 +67,7 @@ const AuthorizationContainer = ({className}) => {
 				return
 			}
 			dispatch(setUser(response))
+			sessionStorage.setItem('userData', JSON.stringify(response))
 		})
 	}
 

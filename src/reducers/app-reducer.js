@@ -4,7 +4,6 @@ const initialAppState = {
 	isLogout: false,
 }
 
-
 export const appReducer = (state = initialAppState, action) => {
 	switch (action.type) {
 		case ACTION_TYPE.LOGOUT:
