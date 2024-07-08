@@ -32,20 +32,17 @@ const UserRowContainer = ({
 	return (
 		<div className={className}>
 			<TableRow border={true}>
-				<div className='login-column'>{login}</div>
-				<div className='registered-at-column'>{registeredAt}</div>
-				<div className='role-column'>
+				<div className="login-column">{login}</div>
+				<div className="registered-at-column">{registeredAt}</div>
+				<div className="role-column">
 					<select value={selectedRoleId} onChange={onRoleChange}>
 						{roles.map(({ id: roleId, name: roleName }) => (
-							<option
-								key={roleId}
-								value={roleId}
-							>
+							<option key={roleId} value={roleId}>
 								{roleName}
 							</option>
 						))}
 					</select>
-					<div className='save-role-button'>
+					<div className="save-role-button">
 						<Icon
 							id="fa-floppy-o"
 							margin="0 0 0 10px"
@@ -55,12 +52,12 @@ const UserRowContainer = ({
 					</div>
 				</div>
 			</TableRow>
-				<Icon
-					id="fa-trash-o"
-					margin="0 0 0 10px"
-					size="24px"
-					onClick={onUserRemove}
-				/>
+			<Icon
+				id="fa-trash-o"
+				margin="0 0 0 10px"
+				size="24px"
+				onClick={onUserRemove}
+			/>
 		</div>
 	)
 }

@@ -6,7 +6,7 @@ const initialPostState = {
 	imageUrl: '',
 	content: '',
 	publishedAt: '',
-	comments: []
+	comments: [],
 }
 
 
