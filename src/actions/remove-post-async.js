@@ -1,0 +1,9 @@
+//import { setPostData } from './set-post-data'
+
+// export const removePostAsync = (requestServer, id) => (dispatch) => {
+// 	requestServer('removePost', id).then((postData) => {
+// 		dispatch(setPostData(postData.response))
+// 	})
+// }
+export const removePostAsync = (requestServer, id) => () =>
+	requestServer('removePost', id)
