@@ -14,7 +14,7 @@ const BlogColumn = styled.div`
 	min-height: 100vh;
 	min-height: 100%;
 	margin: 0 auto;
-	background-color: #f8eee9;
+	background-color: #f9f9e1;
 `
 
 const Page = styled.div`
@@ -52,6 +52,7 @@ export const Blog = () => {
 					<Route path="/users" element={<Users />} />
 					<Route path="/post" element={<div>Новая Статья</div>} />
 					<Route path="/post/:id" element={<Post />} />
+					<Route path="/post/:id/edit" element={<Post />} />
 					<Route path="*" element={<div>Ошибка</div>} />
 				</Routes>
 			</Page>

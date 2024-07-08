@@ -24,7 +24,7 @@ const CommentsContainer = ({ className, comments, postId }) => {
 				<textarea
 					name="comment"
 					value={newComment}
-					placeholder="Коментрий..."
+					placeholder=" Коментарий к статье ..."
 					onChange={({ target }) => setNewComment(target.value)}
 				></textarea>
 				<Icon
@@ -66,6 +66,7 @@ export const Comments = styled(CommentsContainer)`
 	& .new-comment textarea {
 		width: 550px;
 		height: 120px;
+		padding: 8px;
 		font-size: 18px;
 		resize: none;
 		border: 1px solid darkblue;
