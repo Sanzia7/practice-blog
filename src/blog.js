@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { setUser } from './actions'
 import { Route, Routes } from 'react-router-dom'
 import { Footer, Header, Modal } from './components'
-import { Authorization, Post, Registration, Users } from './pages'
+import { Authorization, Main, Post, Registration, Users } from './pages'
 import styled from 'styled-components'
 
 const BlogColumn = styled.div`
@@ -46,7 +46,7 @@ export const Blog = () => {
 			<Header />
 			<Page>
 				<Routes>
-					<Route path="/" element={<div>Главная Страница</div>} />
+					<Route path="/" element={<Main />} />
 					<Route path="/login" element={<Authorization />} />
 					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
