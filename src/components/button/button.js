@@ -22,10 +22,12 @@ export const Button = styled(ButtonContainer)`
 	box-shadow: #374d4a 1px 2px 4px;
 	background-color: #fdffb8;
 	color: darkblue;
-	cursor: pointer;
+	//cursor: pointer;
 
 
 		&:hover{
-		background-color: #b8ffff;
-		color: darkmagenta;
+		cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
+		background: ${({ disabled }) => (disabled ? 'lemonchiffon' : 'steelblue')};
+		color: white;
+		color: azure;
 `
