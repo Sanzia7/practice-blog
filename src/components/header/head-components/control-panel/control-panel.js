@@ -71,8 +71,7 @@ const ControlPanelContainer = ({ className }) => {
 	)
 }
 
-export const ControlPanel = styled(ControlPanelContainer)`
-`
+export const ControlPanel = styled(ControlPanelContainer)``
 
 //<i class="fa fa-sign-out" aria-hidden="true"></i>
 

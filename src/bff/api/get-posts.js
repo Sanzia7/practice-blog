@@ -2,8 +2,10 @@
 import { transformPost } from '../transformers'
 
 
-export const getPosts = (page, limit) =>
-	fetch(`http://localhost:3005/posts?_page=${page}&_limit=${limit}`)
+export const getPosts = (searchPhrase, page, limit) =>
+	fetch(
+		`http://localhost:3005/posts?_title_like=${searchPhrase}&_page=${page}&_limit=${limit}`,
+	)
 		.then((loadedPosts) => loadedPosts.json())
 		.then((loadedPosts) => ({
 			posts: loadedPosts && loadedPosts.map(transformPost),
@@ -36,7 +38,7 @@ export const getPosts = (page, limit) =>
 //
 // export const getPosts = async (page, limit) => {
 // 	try {
-// 		const response = await fetch(`http://localhost:3005/posts?_page=${page}&_limit=${limit}`)
+// 		const response = await fetch(`http://localhost:3005/posts?_page=${page}&_per_page=${per_page}`)
 // 		if (!response.ok) {
 // 			throw new Error(`HTTP error! status: ${response.status}`)
 // 		}

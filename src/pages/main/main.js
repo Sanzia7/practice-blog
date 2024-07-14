@@ -1,46 +1,60 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useServerRequest } from '../../hooks'
-import { Pagination, PostCard } from './mian-components'
+import { Pagination, PostCard, Search } from './mian-components'
 import { PAGINATION_LIMIT } from '../../constants'
+import { debounce } from './utils'
 // import { getLastLinks } from './utils'
 import styled from 'styled-components'
 
 const MainContainer = ({ className }) => {
 	const [posts, setPosts] = useState([])
 	const [page, setPage] = useState(1)
+	const [searchPhrase, setSearchPhrase] = useState('')
+	const [isSearch, setIsSearch] = useState(false)
 	// const [lastPage, setLastPage] = useState(1)
 	const requestServer = useServerRequest()
 
 	useEffect(() => {
-		requestServer('fetchPosts', page, PAGINATION_LIMIT).then(
-			({ response: { posts, links } }) => {
+		requestServer('fetchPosts', searchPhrase, page, PAGINATION_LIMIT).then(
+			({ response: { posts } }) => {
 				setPosts(posts)
-				//console.log(setLastPage(getLastLinks(links)))
 				// setLastPage(getLastLinks(links))
 			},
 		)
-	}, [requestServer, page])
+	}, [requestServer, page, isSearch])
+
+	const startDelayedSearch = useMemo(() => debounce(setIsSearch, 2000), [])
+
+	const onSearch = ({ target }) => {
+		setSearchPhrase(target.value)
+		startDelayedSearch(!isSearch)
+	}
 
 	return (
 		<div className={className}>
-			<div className="post-list">
-				{posts.map(({ id, title, imageUrl, publishedAt, commentsCount }) => (
-					<PostCard
-						key={id}
-						id={id}
-						title={title}
-						imageUrl={imageUrl}
-						publishedAt={publishedAt}
-						commentsCount={commentsCount}
-					/>
-				))}
-			</div>
+			<Search searchPhrase={searchPhrase} onChange={onSearch} />
+			{posts.length ? (
+				<div className="post-list">
+					{posts.map(({ id, title, imageUrl, publishedAt, commentsCount }) => (
+						<PostCard
+							key={id}
+							id={id}
+							title={title}
+							imageUrl={imageUrl}
+							publishedAt={publishedAt}
+							commentsCount={commentsCount}
+						/>
+					))}
+				</div>
+			) : (
+				<div className="no-post-found">Статьи не найдены</div>
+			)}
 
 			<Pagination
-					page={page}
-					// lastPage={lastPage}
-					setPage={setPage}
-				/>
+				page={page}
+				// lastPage={lastPage}
+				setPage={setPage}
+			/>
 		</div>
 	)
 }
@@ -51,6 +65,13 @@ export const Main = styled(MainContainer)`
 		flex-wrap: wrap;
 		padding: 20px;
 	}
+
+	& .no-post-found {
+		text-align: center;
+		margin-top: 40px;
+		font-size: 18px;
+		color: green;
+	}
 `
 //
 // 	{/* {lastPage === 1  && ( */}
@@ -60,3 +81,9 @@ export const Main = styled(MainContainer)`
 // 					// setPage={setPage}
 // 				// />
 // 			// )}
+
+// requestServer('fetchPosts', page, PAGINATION_LIMIT).then(
+// 			({ response: { posts, links } }) => {
+// 				setPosts(posts)
+// 				// setLastPage(getLastLinks(links))
+// 			},
