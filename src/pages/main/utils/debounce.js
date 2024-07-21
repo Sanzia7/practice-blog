@@ -1,9 +1,9 @@
 
-export const debounce = (fn, dalay) => {
+export const debounce = (fn, delay) => {
 	let timeoutId
 	return (...args) => {
 		clearTimeout(timeoutId)
-		timeoutId = setTimeout(fn, dalay, ...args)
-		//setTimeout(() => fn(...args), dalay)
+		timeoutId = setTimeout(fn, delay, ...args)
+		//setTimeout(() => fn(...args), delay)
 	}
 }

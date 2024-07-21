@@ -24,6 +24,7 @@ const MainContainer = ({ className }) => {
 	}, [requestServer, page, isSearch])
 
 	const startDelayedSearch = useMemo(() => debounce(setIsSearch, 2000), [])
+	//const startDelayedSearch = useCallback(() => debounce(setIsSearch, 2000), [])
 
 	const onSearch = ({ target }) => {
 		setSearchPhrase(target.value)

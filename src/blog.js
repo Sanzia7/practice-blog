@@ -2,8 +2,9 @@ import { useLayoutEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setUser } from './actions'
 import { Route, Routes } from 'react-router-dom'
-import { Footer, Header, Modal } from './components'
+import { Error, Footer, Header, Modal } from './components'
 import { Authorization, Main, Post, Registration, Users } from './pages'
+import { ERROR } from './constants'
 import styled from 'styled-components'
 
 const BlogColumn = styled.div`
@@ -53,7 +54,7 @@ export const Blog = () => {
 					<Route path="/post" element={<Post />} />
 					<Route path="/post/:id" element={<Post />} />
 					<Route path="/post/:id/edit" element={<Post />} />
-					<Route path="*" element={<div>Ошибка</div>} />
+					<Route path="*" element={<Error error={ERROR.PAGE_NOT_EXIST} />} />
 				</Routes>
 			</Page>
 			<Footer />
@@ -64,3 +65,4 @@ export const Blog = () => {
 
 // min-hight: 100%;
 //npx json-server --watch src/db.json --port 3005
+// npx json-server --watch src/db.json --port 3005
