@@ -63,6 +63,7 @@ export const Blog = () => {
 	)
 }
 
-// min-hight: 100%;
-//npx json-server --watch src/db.json --port 3005
+
+
 // npx json-server --watch src/db.json --port 3005
+// картинку ищем на сайте: https://picsum.photos/280/150

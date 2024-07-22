@@ -1,42 +1,51 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addCommentAsync } from '../../../../actions'
+import { selectUserId, selectUserRole } from '../../../../selectors'
 import { useServerRequest } from '../../../../hooks'
-import { selectUserId } from '../../../../selectors'
+import { addCommentAsync } from '../../../../actions'
+import { ROLE } from '../../../../constants'
 import { Icon } from '../../../../components'
-import { Comment } from './comment-components'
+import { Comment } from './comment/comment'
 import styled from 'styled-components'
+
+
+
 
 const CommentsContainer = ({ className, comments, postId }) => {
 	const [newComment, setNewComment] = useState('')
+	const userId = useSelector(selectUserId)
+	const userRole = useSelector(selectUserRole)
 	const dispatch = useDispatch()
 	const requestServer = useServerRequest()
-	const userId = useSelector(selectUserId)
 
-	const onNewCommentAdd = (userId, postId, content ) => {
+	const onNewCommentAdd = (userId, postId, content) => {
 		dispatch(addCommentAsync(requestServer, userId, postId, content))
 		setNewComment('')
 	}
 
+	const isGuest = userRole === ROLE.GUEST
+
 	return (
 		<div className={className}>
-			<div className="new-comment">
-				<textarea
-					name="comment"
-					value={newComment}
-					placeholder=" Коментарий к статье ..."
-					onChange={({ target }) => setNewComment(target.value)}
-				></textarea>
-				<Icon
-					id="fa-paper-plane-o"
-					size="18px"
-					margin="0 0 0 10px"
-					onClick={() => onNewCommentAdd(userId, postId, newComment)}
-				/>
-			</div>
+			{!isGuest && (
+				<div className="new-comment">
+					<textarea
+						name="comment"
+						value={newComment}
+						placeholder=" Коментарий к статье ..."
+						onChange={({ target }) => setNewComment(target.value)}
+					></textarea>
+					<Icon
+						id="fa-paper-plane-o"
+						size="18px"
+						margin="0 0 0 10px"
+						onClick={() => onNewCommentAdd(userId, postId, newComment)}
+					/>
+				</div>
+			)}
 
 			<div className="comments">
-				{comments.map(({ postId, id, author, content, publishedAt }) => (
+				{comments.map(({ id, author, content, publishedAt }) => (
 					<Comment
 						key={id}
 						postId={postId}
@@ -50,7 +59,6 @@ const CommentsContainer = ({ className, comments, postId }) => {
 		</div>
 	)
 }
-
 
 export const Comments = styled(CommentsContainer)`
 	width: 580px;

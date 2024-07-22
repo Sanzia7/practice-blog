@@ -4,20 +4,20 @@ import { useMatch, useParams } from 'react-router-dom'
 import { RESET_POST_DATA, loadPostAsync } from '../../actions'
 import { useServerRequest } from '../../hooks'
 import { selectPost } from '../../selectors'
+import { ROLE } from '../../constants'
 import { Error, PrivateContent } from '../../components'
 import { Comments, PostContent, PostForm } from './post-components'
 import styled from 'styled-components'
-import { ROLE } from '../../constants'
 
 const PostContainer = ({ className }) => {
 	const [error, setError] = useState(null)
 	const [isLoading, setIsLoading] = useState(true)
+	const post = useSelector(selectPost)
 	const dispatch = useDispatch()
 	const params = useParams()
 	const isCreating = !!useMatch('/post')
 	const isEditing = !!useMatch('/post/:id/edit')
 	const requestServer = useServerRequest()
-	const post = useSelector(selectPost)
 
 	useLayoutEffect(() => {
 		dispatch(RESET_POST_DATA)

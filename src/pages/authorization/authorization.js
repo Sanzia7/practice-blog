@@ -12,6 +12,7 @@ import { ROLE } from '../../constants'
 import { AuthFormError, Button, H2, Input } from '../../components'
 import styled from 'styled-components'
 
+
 const authFormSchema = yup.object().shape({
 	login: yup
 		.string()

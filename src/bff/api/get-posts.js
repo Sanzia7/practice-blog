@@ -7,9 +7,16 @@ export const getPosts = (searchPhrase, page, limit) =>
 		`http://localhost:3005/posts?_title_like=${searchPhrase}&_page=${page}&_limit=${limit}`,
 	)
 		.then((loadedPosts) => loadedPosts.json())
+		// .then((loadedPosts) =>
+		// 	Promise.all([loadedPosts.json(), loadedPosts.headers.get(`Link`)]),
+		// )
 		.then((loadedPosts) => ({
-			posts: loadedPosts && loadedPosts.map(transformPost),
+		posts: loadedPosts && loadedPosts.map(transformPost),
 		}))
+		// .then(([loadedPosts, links]) => ({
+		// 	posts: loadedPosts && loadedPosts.map(transformPost),
+		// 	links,
+		// }))
 
 // export const getPosts = (page, limit) =>
 // 	fetch(`http://localhost:3005/posts?_page=${page}&_limit=${limit}`)

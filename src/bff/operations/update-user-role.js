@@ -1,6 +1,7 @@
+import { ROLE } from '../../constants'
 import { setUserRole } from '../api'
 import { sessions } from '../sessions'
-import { ROLE } from '../../constants'
+
 
 
 export const updateUserRole = async (hash, userId, newRoleId) => {

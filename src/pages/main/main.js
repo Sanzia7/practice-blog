@@ -3,7 +3,7 @@ import { useServerRequest } from '../../hooks'
 import { Pagination, PostCard, Search } from './mian-components'
 import { PAGINATION_LIMIT } from '../../constants'
 import { debounce } from './utils'
-// import { getLastLinks } from './utils'
+//import { getLastLinks } from './utils'
 import styled from 'styled-components'
 
 const MainContainer = ({ className }) => {
@@ -11,14 +11,14 @@ const MainContainer = ({ className }) => {
 	const [page, setPage] = useState(1)
 	const [searchPhrase, setSearchPhrase] = useState('')
 	const [isSearch, setIsSearch] = useState(false)
-	// const [lastPage, setLastPage] = useState(1)
+	//const [lastPage, setLastPage] = useState(1)
 	const requestServer = useServerRequest()
 
 	useEffect(() => {
 		requestServer('fetchPosts', searchPhrase, page, PAGINATION_LIMIT).then(
 			({ response: { posts } }) => {
 				setPosts(posts)
-				// setLastPage(getLastLinks(links))
+				//setLastPage(getLastLinks(links))
 			},
 		)
 	}, [requestServer, page, isSearch])
@@ -53,9 +53,8 @@ const MainContainer = ({ className }) => {
 
 			<Pagination
 				page={page}
-				// lastPage={lastPage}
-				setPage={setPage}
-			/>
+				//lastPage={lastPage}
+				setPage={setPage} />
 		</div>
 	)
 }

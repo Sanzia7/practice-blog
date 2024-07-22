@@ -9,9 +9,8 @@ import { AuthFormError, Button, H2, Input } from '../../components'
 import { useResetForm } from '../../hooks'
 import { selectUserRole } from '../../selectors'
 import { setUser } from '../../actions'
-
-import styled from 'styled-components'
 import { ROLE } from '../../constants'
+import styled from 'styled-components'
 
 const regFormSchema = yup.object().shape({
 	login: yup

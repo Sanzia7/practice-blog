@@ -1,3 +1,3 @@
 export * from './error'
 export * from './pagination-limit'
-export * from './role-id'
+export * from './role'

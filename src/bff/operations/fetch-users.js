@@ -1,12 +1,11 @@
+import { ROLE } from '../../constants'
 import { getUsers } from '../api'
 import { sessions } from '../sessions'
-import { ROLE } from '../../constants'
 
 
 export const fetchUsers = async (hash) => {
 	const accessRoles = [ROLE.ADMIN]
 	const access = await sessions.access(hash, accessRoles)
-//console.log(access)
 	if (!access) {
 		return {
 			error: 'Доступ запрещён',

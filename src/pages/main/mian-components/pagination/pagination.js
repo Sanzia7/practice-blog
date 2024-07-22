@@ -48,6 +48,7 @@ export const Pagination = styled(PaginationContainer)`
 	margin: 10px 0;
 	margin: 0 0 20px;
 	padding: 0 20px;
+	gap: 10px;
 
 	& button {
 		margin: 0 20px;
@@ -60,6 +61,7 @@ export const Pagination = styled(PaginationContainer)`
 		align-items: center;
 		width: 100%;
 		height: 34px;
+		margin: 0 20px;
 		background-color: #f2df88;
 
 		border: none;
