@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import { H2 , Icon} from '../../../../components'
+import { H2, Icon } from '../../../../components'
 import { SpecialPanel } from '../special-panel/special-panel'
+import { PROP_TYPE } from '../../../../constants'
 import styled from 'styled-components'
 
 const PostContentContainer = ({
@@ -30,7 +31,6 @@ const PostContentContainer = ({
 	)
 }
 
-
 export const PostContent = styled(PostContentContainer)`
 	& img {
 		float: left;
@@ -43,10 +43,14 @@ export const PostContent = styled(PostContentContainer)`
 	}
 `
 
+PostContent.propTypes = {
+	post: PROP_TYPE.POST.isRequired,
+}
 
 
-	// & i {
-	// 	position: relative;
-	// 	top: -3px;
-	// 	font-size: 18px;
-	// }
+
+// & i {
+// 	position: relative;
+// 	top: -3px;
+// 	font-size: 18px;
+// }

@@ -5,7 +5,6 @@ import styled from 'styled-components';
 		height: auto;
 		margin: 10px 0;
 		background-color: #f696d4;
-		// background-color: #792159;
 		font-size: 18px;
 		color: white;
 		text-align: center;

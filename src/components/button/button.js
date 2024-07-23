@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 
@@ -32,3 +33,8 @@ export const Button = styled(ButtonContainer)`
 		background: ${({ disabled }) => (disabled ? 'lemonchiffon' : 'steelblue')};
 		color: white;
 `
+
+Button.propTypes = {
+	children: PropTypes.node.isRequired,
+	width: PropTypes.string,
+}

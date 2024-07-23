@@ -78,5 +78,4 @@ export const Users = styled(UsersContainer)`
 	align-items: center;
 	margin: 10px auto;
 	width: 570px;
-	// font-size: 18px;
 `

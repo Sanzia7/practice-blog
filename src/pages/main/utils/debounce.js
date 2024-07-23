@@ -1,4 +1,3 @@
-
 export const debounce = (fn, delay) => {
 	let timeoutId
 	return (...args) => {

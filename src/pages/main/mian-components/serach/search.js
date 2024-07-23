@@ -1,3 +1,4 @@
+import ProptTypes from 'prop-types'
 import { Icon, Input } from '../../../../components'
 import styled from 'styled-components'
 
@@ -10,10 +11,10 @@ const SearchContainer = ({ className, searchPhrase, onChange }) => {
 				onChange={onChange}
 			/>
 			<Icon
+				inactive={true}
 				id="fa-search"
 				// margin="8px 10px 0 -28px"
 				size="22px"
-				inactive={true}
 			/>
 		</div>
 	)
@@ -32,7 +33,11 @@ export const Search = styled(SearchContainer)`
 
 	& > div {
 		position: absolute;
-        top: 8px;
-        right: 8px;
+		top: 8px;
+		right: 8px;
 	}
 `
+Search.propTypes = {
+	searchPhrase: ProptTypes.string.isRequired,
+	onChange: ProptTypes.func.isRequired,
+}

@@ -7,6 +7,7 @@ import { sanitizeContent } from './post-form-utils'
 import { Icon, Input } from '../../../../components'
 import { SpecialPanel } from '../special-panel/special-panel'
 import styled from 'styled-components'
+import { PROP_TYPE } from '../../../../constants'
 
 const PostFormContainer = ({
 	className,
@@ -85,6 +86,10 @@ export const PostForm = styled(PostFormContainer)`
 		padding: 10px;
 	}
 `
+
+PostForm.propTypes = {
+	post: PROP_TYPE.POST.isRequired,
+}
 
 // & img {
 // float: left;

@@ -1,24 +1,26 @@
 import { useEffect, useMemo, useState } from 'react'
+//import { useCallback } from 'react'
 import { useServerRequest } from '../../hooks'
 import { Pagination, PostCard, Search } from './mian-components'
 import { PAGINATION_LIMIT } from '../../constants'
 import { debounce } from './utils'
-//import { getLastLinks } from './utils'
+//import { getLastPageLinks } from './utils'
 import styled from 'styled-components'
 
 const MainContainer = ({ className }) => {
 	const [posts, setPosts] = useState([])
 	const [page, setPage] = useState(1)
+	const [lastPage, setLastPage] = useState(1)
 	const [searchPhrase, setSearchPhrase] = useState('')
 	const [isSearch, setIsSearch] = useState(false)
-	//const [lastPage, setLastPage] = useState(1)
 	const requestServer = useServerRequest()
 
 	useEffect(() => {
 		requestServer('fetchPosts', searchPhrase, page, PAGINATION_LIMIT).then(
 			({ response: { posts } }) => {
 				setPosts(posts)
-				//setLastPage(getLastLinks(links))
+				//setLastPage(getLastPageLinks(links))
+				setLastPage(1)
 			},
 		)
 	}, [requestServer, page, isSearch])
@@ -34,7 +36,7 @@ const MainContainer = ({ className }) => {
 	return (
 		<div className={className}>
 			<Search searchPhrase={searchPhrase} onChange={onSearch} />
-			{posts.length ? (
+			{posts.length > 0 ? (
 				<div className="post-list">
 					{posts.map(({ id, title, imageUrl, publishedAt, commentsCount }) => (
 						<PostCard
@@ -51,10 +53,9 @@ const MainContainer = ({ className }) => {
 				<div className="no-post-found">Статьи не найдены</div>
 			)}
 
-			<Pagination
-				page={page}
-				//lastPage={lastPage}
-				setPage={setPage} />
+			{lastPage === 1 && (
+				<Pagination page={page} lastPage={lastPage} setPage={setPage} />
+			)}
 		</div>
 	)
 }
@@ -73,17 +74,10 @@ export const Main = styled(MainContainer)`
 		color: green;
 	}
 `
-//
-// 	{/* {lastPage === 1  && ( */}
-// 				// <Pagination
-// 					// page={page}
-// 					// lastPage={lastPage}
-// 					// setPage={setPage}
-// 				// />
-// 			// )}
 
-// requestServer('fetchPosts', page, PAGINATION_LIMIT).then(
+
+// requestServer('fetchPosts', searchPhrase, page, PAGINATION_LIMIT).then(
 // 			({ response: { posts, links } }) => {
 // 				setPosts(posts)
-// 				// setLastPage(getLastLinks(links))
+// 				// setLastPage(getLastPageLinks(links))
 // 			},

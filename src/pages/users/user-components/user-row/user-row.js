@@ -1,7 +1,9 @@
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { useServerRequest } from '../../../../hooks'
 import { TableRow } from '../table-row/table-row'
 import { Icon } from '../../../../components'
+import { PROP_TYPE } from '../../../../constants'
 import styled from 'styled-components'
 
 const UserRowContainer = ({
@@ -17,7 +19,7 @@ const UserRowContainer = ({
 	const [selectedRoleId, setSelectedRoleId] = useState(userRoleId)
 	const requestServer = useServerRequest()
 
-	const onRoleChange = ({target}) => {
+	const onRoleChange = ({ target }) => {
 		setSelectedRoleId(Number(target.value))
 	}
 
@@ -62,7 +64,6 @@ const UserRowContainer = ({
 	)
 }
 
-
 export const UserRow = styled(UserRowContainer)`
 	display: flex;
 	align-items: center;
@@ -73,4 +74,11 @@ export const UserRow = styled(UserRowContainer)`
 	}
 `
 
-
+UserRow.propTypes = {
+	id: PropTypes.string.isRequired,
+	login: PropTypes.string.isRequired,
+	registeredAt: PropTypes.string.isRequired,
+	roleId: PROP_TYPE.ROLE_ID.isRequired,
+	roles: PropTypes.arrayOf(PROP_TYPE.ROLE).isRequired,
+	onUserRemove: PropTypes.func.isRequired,
+}

@@ -1,2 +1,2 @@
-//export * from './get-last-links'
+export * from './get-last-page-links'
 export * from './debounce'
