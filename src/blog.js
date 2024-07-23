@@ -1,0 +1,52 @@
+
+import { Route, Routes } from 'react-router-dom';
+import { Footer, Header } from './components';
+import styled from 'styled-components';
+
+const BlogColumn = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 1000px;
+	min-height: 100vh;
+	min-height: 100%;
+	margin: 0 auto;
+	background-color: #fff;
+`
+
+const Content = styled.div`
+	padding: 120px 0;
+	height: 3000px;
+`
+const H2 = styled.h2`
+	text-align: center;
+`
+export const Blog = () => {
+	return (
+		<BlogColumn>
+			<Header />
+
+			<Content>
+				<H2>Контент страницы</H2>
+				<Routes>
+					<Route path='/' element={<div>Главная Страница</div>} />
+					<Route path='/login' element={<div>Авторизация</div>} />
+					<Route path='/register' element={<div>Регистрация</div>} />
+					<Route path='/users' element={<div>Пользователи</div>} />
+					<Route path='/post' element={<div>Новая Статья</div>} />
+					<Route path='/post/:postId' element={<div>Статья</div>} />
+					<Route path='*' element={<div>Ошибка</div>} />
+				</Routes>
+			</Content>
+
+			<Footer />
+		</BlogColumn>
+	);
+};
+
+
+
+
+// min-hight: 100%;
+//npx json-server --watch src/db.json --port 3005
+
