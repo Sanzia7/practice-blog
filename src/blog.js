@@ -64,6 +64,6 @@ export const Blog = () => {
 }
 
 
-
+// npm install json-server@0.17.4
 // npx json-server --watch src/db.json --port 3005
 // картинку ищем на сайте: https://picsum.photos/280/150
